@@ -5,6 +5,7 @@ import (
 	route2 "github.com/rbicca/simulator/application/route"
 	"github.com/joho/gotodenv"
 	"github.com/rbicca/simulator/infra/kafka"
+	"github.com/confluentinc/confluent-kafka-go/kafka"
 )
 
 func init(){
