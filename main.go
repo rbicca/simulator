@@ -3,9 +3,8 @@ package main
 import (
 	"fmt"
 	route2 "github.com/rbicca/simulator/application/route"
-	"github.com/joho/gotodenv"
+	"github.com/joho/godotenv"
 	"github.com/rbicca/simulator/infra/kafka"
-	"github.com/confluentinc/confluent-kafka-go/kafka"
 )
 
 func init(){

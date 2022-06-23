@@ -16,7 +16,7 @@ type KafkaConsumer struct {
 
 func NewKafkaConsumer(msgChan chan *ckafka.Message) *KafkaConsumer {
 	return &KafkaConsumer{
-		MsgChan: msgChan
+		MsgChan: msgChan,
 	}
 }
 
