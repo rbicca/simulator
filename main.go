@@ -3,17 +3,31 @@ package main
 import (
 	"fmt"
 	route2 "github.com/rbicca/simulator/application/route"
+	"github.com/joho/gotodenv"
+	"github.com/rbicca/simulator/infra/kafka"
 )
 
+func init(){
+	err := gotodenv.Load()
+	if err != nil {
+		log.Fatal("error loading .env file")
+	}
+}
+
 func main(){
-	route := route2.Route{
-		ID: 		"1",
-		ClientID:	"1",
-	} 
 
-	route.LoadPositions()
 
-	stringjson, _ := route.ExportJsonPositions()
-	fmt.Println(stringjson);
+	producer := kafka.NewKafkaProducer()
+	kafka.Publish("Ola Mella", "readTest"producer)
+
+	// route := route2.Route{
+	// 	ID: 		"1",
+	// 	ClientID:	"1",
+	// } 
+
+	// route.LoadPositions()
+
+	// stringjson, _ := route.ExportJsonPositions()
+	// fmt.Println(stringjson[2]);
 
 }
