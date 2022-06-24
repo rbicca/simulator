@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	//route2 "github.com/rbicca/simulator/application/route"
+	kafka2 "github.com/rbicca/simulator/application/kafka"
 	"github.com/joho/godotenv"
 	"github.com/rbicca/simulator/infra/kafka"
 	"log"
@@ -25,7 +26,7 @@ func main(){
 
 	for msg := range msgChan {
 		fmt.Println(string(msg.Value))
-		go kafka.Produce(msg)
+		go kafka2.Produce(msg)
 	}
 
 
