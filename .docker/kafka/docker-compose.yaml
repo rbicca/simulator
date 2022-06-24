@@ -7,7 +7,7 @@ services:
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
     extra_hosts:
-      - "host.docker.internal:127.0.0.1"
+      - "host.docker.internal:172.17.0.1"
 
   kafka:
     image: confluentinc/cp-kafka:latest
@@ -50,4 +50,4 @@ services:
       CONTROL_CENTER_CONNECT_CLUSTER: http://kafka-connect:8083
       PORT: 9021
     extra_hosts:
-      - "host.docker.internal:127.0.0.1"
+      - "host.docker.internal:172.17.0.1"

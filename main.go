@@ -1,11 +1,12 @@
 package main
 
 import (
-	//"fmt"
+	"fmt"
 	//route2 "github.com/rbicca/simulator/application/route"
 	"github.com/joho/godotenv"
 	"github.com/rbicca/simulator/infra/kafka"
 	"log"
+	ckafka "github.com/confluentinc/confluent-kafka-go/kafka"
 )
 
 func init(){
@@ -17,13 +18,24 @@ func init(){
 
 func main(){
 
+	//** Teste mocado para consumir mensagem enviadas
+	msgChan := make(chan *ckafka.Message)
+	consumer := kafka.NewKafkaConsumer(msgChan)
+	go consumer.Consume()
 
-	producer := kafka.NewKafkaProducer()
-	kafka.Publish("Ola Mella", "readTest", producer)
-
-	for {
-		_ = 1
+	for msg := range msgChan {
+		fmt.Println(string(msg.Value))
 	}
+
+	//** Teste mocado para enviar mensagem - loopzinho maroto no fim para manter app rodando
+	// producer := kafka.NewKafkaProducer()
+	// kafka.Publish("Ola Mella", "readTest", producer)
+
+	// for {
+	// 	_ = 1
+	// }
+
+	//** Teste mocado para carga e exibição de rotas
 	// route := route2.Route{
 	// 	ID: 		"1",
 	// 	ClientID:	"1",
