@@ -18,14 +18,25 @@ func init(){
 
 func main(){
 
-	//** Teste mocado para consumir mensagem enviadas
+	//** Teste mocado para consumir rotas
 	msgChan := make(chan *ckafka.Message)
 	consumer := kafka.NewKafkaConsumer(msgChan)
 	go consumer.Consume()
 
 	for msg := range msgChan {
 		fmt.Println(string(msg.Value))
+		go kafka.Produce(msg)
 	}
+
+
+	//** Teste mocado para consumir mensagem enviadas
+	// msgChan := make(chan *ckafka.Message)
+	// consumer := kafka.NewKafkaConsumer(msgChan)
+	// go consumer.Consume()
+
+	// for msg := range msgChan {
+	// 	fmt.Println(string(msg.Value))
+	// }
 
 	//** Teste mocado para enviar mensagem - loopzinho maroto no fim para manter app rodando
 	// producer := kafka.NewKafkaProducer()
